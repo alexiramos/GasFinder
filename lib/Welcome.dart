@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:gas_finder/Login.dart';
 import 'package:carousel_slider/carousel_slider.dart'; //Para carrusel de imagenes
 
 
@@ -7,6 +8,7 @@ class Welcome extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
+      debugShowCheckedModeBanner: false,
       theme: ThemeData(
         textTheme: GoogleFonts.senTextTheme(), // Carga la fuente Lato desde Google Fonts
       ),
@@ -43,7 +45,30 @@ class _MyCarouselState extends State<MyCarousel> {
   int _currentIndex = 0;
 
   void _goToNextPage() {
+
+    if (_currentIndex+1 == slides.length){
+      navigateToScreen(context);
+    }
     _carouselController.nextPage(duration: Duration(milliseconds: 300), curve: Curves.ease);
+  }
+
+  void navigateToScreen(BuildContext context)  {
+    //Navigator.pushReplacement(context, MaterialPageRoute(builder: (context) => Welcome()));
+    Navigator.pushReplacement(
+      context,
+      PageRouteBuilder(
+        pageBuilder: (context, animation, secondaryAnimation) => Login(),
+        transitionsBuilder: (context, animation, secondaryAnimation, child) {
+          const begin = Offset(1.0, 0.0);
+          const end = Offset.zero;
+          const curve = Curves.easeInOut;
+          var tween = Tween(begin: begin, end: end).chain(CurveTween(curve: curve));
+          var offsetAnimation = animation.drive(tween);
+          return SlideTransition(position: offsetAnimation, child: child);
+        },
+      ),
+    );
+
   }
   @override
   Widget build(BuildContext context) {
@@ -63,7 +88,6 @@ class _MyCarouselState extends State<MyCarousel> {
                   Container(
                     width: MediaQuery.of(context).size.width,
                     height: 300,
-                    decoration: BoxDecoration(color: Colors.deepPurpleAccent),
                     child: Image(
                       image: AssetImage(slides[index]['image']!),
                       fit: BoxFit.cover,
@@ -122,6 +146,7 @@ class _MyCarouselState extends State<MyCarousel> {
               TextButton(
                 onPressed: () {
                   // Acción para omitir
+                  navigateToScreen(context);
                 },
                 child: Text('Omitir',style: TextStyle(color: Colors.grey),),
               ),
