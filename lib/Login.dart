@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:gas_finder/Start.dart';
 import 'package:google_fonts/google_fonts.dart';
 
 
@@ -106,7 +107,7 @@ class Login extends StatelessWidget {
                           ElevatedButton(
 
                             onPressed: () {
-                              // Lógica para el botón "Ingresar"
+                              Navigator.pushReplacement(context, MaterialPageRoute(builder: (context) => Start()));
                             },
                             style: ElevatedButton.styleFrom(
                               backgroundColor: Color(0xffeebd3d), // Cambia el color del botón
