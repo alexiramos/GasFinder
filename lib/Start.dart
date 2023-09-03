@@ -27,9 +27,29 @@ class _DrawerMenuState extends State<DrawerMenu> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Color(0xffF3F6FD),
+      backgroundColor: Color(0xffFFFFFF),
       key: _scaffoldKey,
-      body: MenuBar(_scaffoldKey),
+      body: Column(
+        mainAxisAlignment: MainAxisAlignment.center,
+        children: <Widget>[
+          MenuBar(_scaffoldKey),
+          const SizedBox(height: 12,),
+          Container(
+            decoration: BoxDecoration(
+
+              borderRadius: BorderRadius.circular(20),
+
+            ),
+            constraints:const BoxConstraints(
+              maxHeight: 200, // Altura máxima del Container
+              minHeight: 200, // Altura mínima del Container
+              maxWidth: 300,
+            ),
+          child: Image.asset("assets/Banner.png",),
+          ),
+          const SizedBox(height: 32,),
+        ],
+      ),
       endDrawer: Drawer(
         shape: RoundedRectangleBorder(
           borderRadius: BorderRadius.only(
@@ -121,11 +141,11 @@ class MenuBar extends StatelessWidget {
                     children: [
                       Text(
                         'Bienvenido',
-                        style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
+                        style: TextStyle(fontSize: 18, ),
                       ),
                       Text(
                         userName,
-                        style: TextStyle(fontSize: 16),
+                        style: TextStyle(fontSize: 16,fontWeight: FontWeight.bold,color: Color(0xffd22833)),
                       ),
                     ],
                   ),
