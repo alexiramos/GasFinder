@@ -1,3 +1,4 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:gas_finder/Start.dart';
 import 'package:google_fonts/google_fonts.dart';
@@ -124,10 +125,11 @@ class _LoginState extends State<Login> {
                             if (usernameController.text == 'admin' &&
                                 passwordController.text == 'admin') {
                               // Aquí puedes navegar a la página de inicio
-                              Navigator.pushReplacement(
-                                  context,
-                                  MaterialPageRoute(
-                                      builder: (context) => Start()));
+                              Navigator.of(context).pushReplacement(
+                                CupertinoPageRoute(
+                                  builder: (context) => Start(),
+                                ),
+                              );
                             } else {
                               setState(() {
                                 errorMessage = "Credenciales incorrectas";

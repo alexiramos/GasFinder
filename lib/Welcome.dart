@@ -1,3 +1,4 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:gas_finder/Login.dart';
@@ -13,6 +14,12 @@ class Welcome extends StatelessWidget {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
       theme: ThemeData(
+        pageTransitionsTheme: PageTransitionsTheme(
+          builders: {
+            TargetPlatform.iOS: CupertinoPageTransitionsBuilder(), // Configuración para iOS
+            TargetPlatform.android: CupertinoPageTransitionsBuilder(), // Configuración para Android
+          },
+        ),
         textTheme: GoogleFonts.senTextTheme(),
       ),
       home: MyCarousel(),
@@ -120,18 +127,10 @@ class _MyCarouselState extends State<MyCarousel> {
   }
 
   void navigateToScreen(BuildContext context) {
-    Navigator.pushReplacement(
-      context,
-      PageRouteBuilder(
-        pageBuilder: (context, animation, secondaryAnimation) => Login(),
-        transitionsBuilder: (context, animation, secondaryAnimation, child) {
-          const begin = Offset(1.0, 0.0);
-          const end = Offset.zero;
-          const curve = Curves.easeInOut;
-          var tween = Tween(begin: begin, end: end).chain(CurveTween(curve: curve));
-          var offsetAnimation = animation.drive(tween);
-          return SlideTransition(position: offsetAnimation, child: child);
-        },
+
+    Navigator.of(context).pushReplacement(
+      CupertinoPageRoute(
+          builder: (context) => Login(),
       ),
     );
   }
