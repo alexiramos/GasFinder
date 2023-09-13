@@ -73,7 +73,7 @@ class MenuList extends StatelessWidget{
         SizedBox(height: 20,),
         ButtonMenu("Precio Actual ",Start(),Icons.price_change,principalScreen==MenuItems[3]),
         SizedBox(height: 20,),
-        ButtonMenu("Mi Perfil ",Start(),Icons.person,principalScreen==MenuItems[4]),
+        ButtonMenu("Mi Perfil", MiPerfil(), Icons.person, principalScreen == MenuItems[4]),
         SizedBox(height: 20,),
         ButtonMenu("Acerca De",Start(),Icons.info,principalScreen==MenuItems[5]),
       ],
