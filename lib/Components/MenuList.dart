@@ -2,6 +2,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import '../Start.dart';
 import '../CercaDeMi.dart';
+import '../AcercaDe.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:gas_finder/MiPerfil.dart';
 
@@ -75,7 +76,7 @@ class MenuList extends StatelessWidget{
         SizedBox(height: 20,),
         ButtonMenu("Mi Perfil", MiPerfil(), Icons.person, principalScreen == MenuItems[4]),
         SizedBox(height: 20,),
-        ButtonMenu("Acerca De",Start(),Icons.info,principalScreen==MenuItems[5]),
+        ButtonMenu("Acerca De", AcercaDeScreen(), Icons.info, principalScreen == MenuItems[5]),
       ],
     );
   }
